@@ -1,3 +1,5 @@
+// iterator_test1.c - Tests on the iterator.h by comparing with standard C actions.
+
 #include <stdio.h>
 
 #include "../src/iterator/iterator.h"

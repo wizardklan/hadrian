@@ -6,7 +6,7 @@ CFLAGS := -std=c99 \
           -Wextra \
           -Wpedantic \
 tests:
-	$(CC) tests/iterator_test.c src/iterator/iterator.c -o tests/iterator_test.exe $(CFLAGS)
+	$(CC) tests/iterator_test1.c src/iterator/iterator.c -o tests/iterator_test1.exe $(CFLAGS)
 
 clean:
 	rm -f *.exe
