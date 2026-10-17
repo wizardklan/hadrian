@@ -9,6 +9,8 @@
 
 #define INVALID_ITERATOR ( (iterator){.data = NULL, .count = NAN, .index = NAN, .element_size = NAN} )
 
+// data ptr is always at the HEAD (pointer to first element of array) while index changes.
+// Rest fields stay constant after creation by createIterator().
 typedef struct {
     void* data;
     size_t count;
