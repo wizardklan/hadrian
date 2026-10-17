@@ -4,3 +4,9 @@ CompileFlags:
     - -Wall
     - -Wextra
     - -Wpedantic
+
+If:
+  PathMatch: .*\.h$
+CompileFlags:
+  Add:
+    - -xc-header
