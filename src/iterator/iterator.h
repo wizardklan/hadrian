@@ -26,5 +26,8 @@ void advance(iterator* itr, const size_t step);
 void prev(iterator* itr);
 void* getIteratorValue(iterator* itr);
 void swapIterators(iterator* first, iterator* second);
+bool iteratorEqual(const iterator* itr1, const iterator* itr2);
+size_t iteratorSeperation(const iterator* itr1, const iterator* itr2);
+void* iteratorRaw(iterator* itr);
 
 #endif /* ITERATOR_H */

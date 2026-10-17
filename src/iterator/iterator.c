@@ -135,3 +135,34 @@ void swapIterators(iterator* first, iterator* second)
 
     return;
 }
+
+// Compares each member of 2 iterators and returns corresponding bool.
+//
+// NOTE: Will return even if data ptr is NULL and/or the iterator is an INVALID_ITERATOR.
+//
+// This along with swapIterators() suffer from the same problem, we can't know whether both iterators exist on the same array.
+bool iteratorEqual(const iterator *itr1, const iterator *itr2)
+{
+    if (itr1->data == itr2->data && itr1->count == itr2->count && itr1->element_size == itr2->element_size && itr1->index == itr2->index) {
+        return true;
+    } else {
+        return false; 
+    }
+}
+
+// Returns raw pointer to current (data+index)
+//
+// This also suffers from the same problem as swapIterators() & iteratorEqual(), there is no way of knowing which array the iterator exists on
+// hence only returning a pointer to that specific member of the array, an array is contiguous so pointer arithmetic is still valid on this ptr
+// but its still a point of caution.
+void* iteratorRaw(iterator *itr)
+{
+    if (itr->data == NULL || isInvalidIterator(itr)) {
+        fprintf(stderr, "Iterator is invalid.");
+// NOTE: Stating the iterator is invalid then just procedding nullptr doesn't make sense since thats the value of an invalid  iterator anyway. 
+// TODO: Choose better return than nullptr as it kills the point of nullcheck.
+        return NULL;
+    } else {
+       return getIteratorValue(itr);
+    }
+}
