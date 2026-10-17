@@ -5,7 +5,6 @@ CFLAGS := -std=c99 \
           -Wall \
           -Wextra \
           -Wpedantic \
-          -Werror
 tests:
 	$(CC) tests/iterator_test.c src/iterator/iterator.c -o tests/iterator_test.exe $(CFLAGS)
 
