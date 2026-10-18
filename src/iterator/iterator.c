@@ -107,7 +107,7 @@ void prev(iterator* itr)
 // To use, the function's return has to be de-referenced and typecast into the array's type.
 //
 // If an iterator `itr` is created on an integer array.
-// int value = *(int*)getIteratorValue(&itr);
+// int value = *((int*)getIteratorValue(&itr));
 // ^^^ Correct syntax
 void* getIteratorValue(iterator* itr)
 {
