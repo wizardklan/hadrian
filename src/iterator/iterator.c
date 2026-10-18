@@ -126,7 +126,7 @@ void* getIteratorValue(iterator* itr)
 // Swaps the whole iterator.
 //
 // Note (UNDEFINED BEHAVIOR): Due to the void*, this might try and swap 2 iterators of different type.
-// Needs to either rewritten.
+// TODO: Needs to be rewritten.
 void swapIterators(iterator* first, iterator* second)
 {
     iterator temp = *first;
@@ -165,4 +165,16 @@ void* iteratorRaw(iterator *itr)
     } else {
        return getIteratorValue(itr);
     }
+}
+
+// Returns the seperation between iterators as an integer hence **value can be negative** since the order of the parameters matters.
+// Negative value indicates first iterator is behind the second in index.
+int iteratorSeperation(const iterator *firstItr, const iterator *secondItr)
+{
+    if (firstItr->data == NULL || secondItr == NULL) {
+        fprintf(stderr, "Iterators are invalid.");
+        return NAN;
+    }
+
+    return firstItr->index - secondItr->index;
 }
