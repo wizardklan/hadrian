@@ -26,3 +26,9 @@ add_executable(iterator_test1
 )
 
 target_link_libraries(iterator_test1 PRIVATE hadrian)
+
+add_executable(iterator_test2
+    tests/iterator_test2.c
+)
+
+target_link_libraries(iterator_test2 PRIVATE hadrian)
