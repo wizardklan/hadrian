@@ -29,7 +29,7 @@ void prev(iterator* itr);
 void* getIteratorValue(iterator* itr);
 void swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
-int iteratorSeperation(const iterator* firstItr, const iterator* secondItr);
+int iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
 void* iteratorRaw(iterator* itr);
 iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end);
 

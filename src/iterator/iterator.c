@@ -175,7 +175,7 @@ void* iteratorRaw(iterator *itr)
 // Negative value indicates first iterator is behind the second in index.
 //
 // NOTE: Does not work for rangeIterator
-int iteratorSeperation(const iterator *firstItr, const iterator *secondItr)
+int iteratorSeparation(const iterator *firstItr, const iterator *secondItr)
 {
     if (firstItr->data == NULL || secondItr == NULL) {
         fprintf(stderr, "Iterators are invalid.");
