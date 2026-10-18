@@ -16,6 +16,8 @@ typedef struct {
     size_t count;
     size_t index;
     size_t element_size;
+    size_t start;
+    size_t end;
 } iterator;
 
 iterator createIterator(void* array, size_t count, size_t element_size);
@@ -29,5 +31,6 @@ void swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
 int iteratorSeperation(const iterator* firstItr, const iterator* secondItr);
 void* iteratorRaw(iterator* itr);
+iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end);
 
 #endif /* ITERATOR_H */

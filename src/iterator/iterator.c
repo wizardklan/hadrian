@@ -15,6 +15,8 @@
 
 // Takes a pointer to the first element of an array along with its count (sizeof(arr)/sizeof(arr[0])) & element_size (sizeof(arr[0]))
 // Sets iterator data ptr as a constant reference to the HEAD (first element) of the given array and begins indexing at 0 while filling other fields.
+//
+// Iterator created exists over entire array unlike rangeIterator hence start = 0 & end = count.
 iterator createIterator(void* array, size_t count, size_t element_size)
 {
     if (array == NULL) {
@@ -26,7 +28,9 @@ iterator createIterator(void* array, size_t count, size_t element_size)
         .data = array,
         .count = count,
         .index = 0,
-        .element_size = element_size
+        .element_size = element_size,
+        .start = 0,
+        .end = count
     };
     return itr;
 }
@@ -51,7 +55,7 @@ void next(iterator* itr)
     if (isInvalidIterator(itr)) {
         return;
     }
-    if (itr->index == itr->count) {
+    if (itr->index >= itr->end) {
         fprintf(stderr, "Iterator cannot go out of bounds of its array.\n");
         return;
     }
@@ -76,7 +80,7 @@ void advance(iterator* itr, const size_t step)
     if (isInvalidIterator(itr)) {
         return;
     }
-    if (itr->index == itr->count) {
+    if (itr->index >= itr->end) {
         fprintf(stderr, "Iterator cannot go out of bounds of its array.\n");
         return;
     }
@@ -91,7 +95,7 @@ void prev(iterator* itr)
     if (isInvalidIterator(itr)) {
         return;
     }
-    if (itr->index <= 0) {
+    if (itr->index <= itr->end) {
         fprintf(stderr, "Iterator cannot go out of bounds of its array.\n");
         return;
     }
@@ -169,6 +173,8 @@ void* iteratorRaw(iterator *itr)
 
 // Returns the seperation between iterators as an integer hence **value can be negative** since the order of the parameters matters.
 // Negative value indicates first iterator is behind the second in index.
+//
+// NOTE: Does not work for rangeIterator
 int iteratorSeperation(const iterator *firstItr, const iterator *secondItr)
 {
     if (firstItr->data == NULL || secondItr == NULL) {
@@ -177,4 +183,24 @@ int iteratorSeperation(const iterator *firstItr, const iterator *secondItr)
     }
 
     return firstItr->index - secondItr->index;
+}
+
+// Returns an iterator that exists only in a slice of an array but limiting its count to exist only between start and end.
+// Hence iterator exists only in (start-end) i.e. a rangeIterator.
+//
+// Will return out of bounds if moved outside its range even if accessing that memory is valid.
+iterator createRangeIterator(void *array, size_t count, size_t element_size, const size_t start, const size_t end)
+{
+    if (array == NULL) {
+        fprintf(stderr, "Array is invalid.");
+        return INVALID_ITERATOR;
+    }
+
+    return (iterator){
+        .data = array,
+        .count = start - end,
+        .element_size = element_size,
+        .start = start,
+        .end = end
+    };
 }
