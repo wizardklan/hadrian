@@ -1,3 +1,10 @@
+/*
+    hadrian_status.h - Error constants for Hadrian.
+
+    Use whereever a function must return a ptr by changing to HDN_STATUS_ENUM
+    & modifying the ptr and returning a status constant.
+*/
+
 #ifndef HADRIAN_STATUS_H
 #define HADRIAN_STATUS_H
 
