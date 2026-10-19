@@ -31,7 +31,7 @@ void prev(iterator* itr);
 void* getIteratorValue(iterator* itr);
 HDN_STATUS_ENUM swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
-int iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
+ptrdiff_t iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
 HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value);
 iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end);
 
