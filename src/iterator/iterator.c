@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 #include "iterator.h"
+#include "../hadrian_status.h"
 
 // #define GENERIC_AT_PTR_INCREMENT(ptr, i, element_size) \
 //     ((void *)((char *)(ptr) + ((i) * (element_size))))
@@ -37,7 +38,8 @@ iterator createIterator(void* array, size_t count, size_t element_size)
 
 // Takes reference to a pre-existing iterator.
 // Compares iterator taken as function argument to INVALID_ITERATOR (defined in iterator.h) and returns bool.
-bool isInvalidIterator(iterator* itr) {
+bool isInvalidIterator(iterator* itr) 
+{
     iterator b = INVALID_ITERATOR;
 
     if (itr->data == b.data && itr->count == b.count && itr->index == b.index && itr->element_size == b.element_size) {
@@ -160,15 +162,14 @@ bool iteratorEqual(const iterator *itr1, const iterator *itr2)
 // This also suffers from the same problem as swapIterators() & iteratorEqual(), there is no way of knowing which array the iterator exists on
 // hence only returning a pointer to that specific member of the array, an array is contiguous so pointer arithmetic is still valid on this ptr
 // but its still a point of caution.
-void* iteratorRaw(iterator *itr)
+HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value)
 {
     if (itr->data == NULL || isInvalidIterator(itr)) {
         fprintf(stderr, "Iterator is invalid.");
-// NOTE: Stating the iterator is invalid then just procedding nullptr doesn't make sense since thats the value of an invalid  iterator anyway. 
-// TODO: Choose better return than nullptr as it kills the point of nullcheck.
-        return NULL;
+        return HDN_NULLPTREXCEPTION;
     } else {
-       return getIteratorValue(itr);
+       value = getIteratorValue(itr);
+       return HDN_SUCCESS;
     }
 }
 

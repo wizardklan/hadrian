@@ -7,6 +7,8 @@
 #include <math.h>
 #include <stdbool.h>
 
+#include "../hadrian_status.h"
+
 #define INVALID_ITERATOR ( (iterator){.data = NULL, .count = NAN, .index = NAN, .element_size = NAN} )
 
 // data ptr is always at the HEAD (pointer to first element of array) while index changes.
@@ -30,7 +32,7 @@ void* getIteratorValue(iterator* itr);
 void swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
 int iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
-void* iteratorRaw(iterator* itr);
+HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value);
 iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end);
 
 #endif /* ITERATOR_H */

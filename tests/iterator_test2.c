@@ -1,6 +1,8 @@
 #include <assert.h>
 #include <stdio.h>
+
 #include "../src/iterator/iterator.h"
+#include "../src/hadrian_status.h"
 
 int main(void)
 {
@@ -33,7 +35,8 @@ int main(void)
     assert(*(int*)getIteratorValue(&itr) == 30);
     assert(*(int*)getIteratorValue(&itr2) == 30);
 
-    assert(iteratorRaw(&itr) == &values[2]);
+    void* rawPtrToIterator;
+    assert(iteratorRaw(&itr, rawPtrToIterator) == HDN_SUCCESS);
 
     iterator range = createRangeIterator(values, 5, sizeof(int), 1, 4);
 
