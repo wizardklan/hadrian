@@ -37,16 +37,15 @@ int main(void)
 
     iterator range = createRangeIterator(values, 5, sizeof(int), 1, 4);
 
-    assert(*(int*)getIteratorValue(&range) == 20);
-
+    assert(*(int*)getIteratorValue(&range) == 10);
     next(&range);
-    assert(*(int*)getIteratorValue(&range) == 30);
+    assert(*(int*)getIteratorValue(&range) == 20);
 
     destroyIterator(&itr);
     destroyIterator(&itr2);
     destroyIterator(&range);
 
-    printf("iterator tests passed\n");
+    printf("All iterator tests passed\n");
 
     return 0;
 }

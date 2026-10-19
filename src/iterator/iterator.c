@@ -37,8 +37,7 @@ iterator createIterator(void* array, size_t count, size_t element_size)
 
 // Takes reference to a pre-existing iterator.
 // Compares iterator taken as function argument to INVALID_ITERATOR (defined in iterator.h) and returns bool.
-bool isInvalidIterator(iterator* itr)
-{
+bool isInvalidIterator(iterator* itr) {
     iterator b = INVALID_ITERATOR;
 
     if (itr->data == b.data && itr->count == b.count && itr->index == b.index && itr->element_size == b.element_size) {
@@ -64,14 +63,16 @@ void next(iterator* itr)
     itr->index += 1;
 }
 
-// Iterator exists as a struct on the stack, attempts to remove it and sets dangling pointer to NULL
-// Essentially makes the iterator unusable
+// New implementation:
+// Simply assigns INVALID_ITERATOR
 void destroyIterator(iterator* itr)
 {
-    free(itr->data);
-    itr->data = NULL;
-    free(itr);
-    itr = NULL;
+    if (itr->data == NULL) {
+        return;
+    }
+
+    *itr = INVALID_ITERATOR;
+    return;
 }
 
 // Advances iterator by given input (const size_t step) by incrementing iterator's index by step.
@@ -95,7 +96,7 @@ void prev(iterator* itr)
     if (isInvalidIterator(itr)) {
         return;
     }
-    if (itr->index <= itr->end) {
+    if (itr->index <= itr->start) {
         fprintf(stderr, "Iterator cannot go out of bounds of its array.\n");
         return;
     }
