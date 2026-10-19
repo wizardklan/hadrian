@@ -131,16 +131,18 @@ void* getIteratorValue(iterator* itr)
 }
 
 // Swaps the whole iterator.
-//
-// Note (UNDEFINED BEHAVIOR): Due to the void*, this might try and swap 2 iterators of different type.
-// TODO: Needs to be rewritten.
-void swapIterators(iterator* first, iterator* second)
+HDN_STATUS_ENUM swapIterators(iterator* first, iterator* second)
 {
+    if (first->data == NULL || second->data == NULL) {
+        fprintf(stderr, "Cannot swap NULL pointers");
+        return HDN_NULLPTREXCEPTION;
+    }
+
     iterator temp = *first;
     *first = *second;
     *second = temp;
 
-    return;
+    return HDN_SUCCESS;
 }
 
 // Compares each member of 2 iterators and returns corresponding bool.

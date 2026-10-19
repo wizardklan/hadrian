@@ -29,7 +29,7 @@ void destroyIterator(iterator* itr);
 void advance(iterator* itr, const size_t step);
 void prev(iterator* itr);
 void* getIteratorValue(iterator* itr);
-void swapIterators(iterator* first, iterator* second);
+HDN_STATUS_ENUM swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
 int iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
 HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value);
