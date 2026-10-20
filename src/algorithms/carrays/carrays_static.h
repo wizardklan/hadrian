@@ -28,5 +28,8 @@ int linearSearch(const void* array, const void* member, size_t count, size_t ele
 size_t repetitions(const void* array, const void* member, size_t count, size_t element_size);
 // Replaces all values in array with `value` 
 void fillArray(void* array, const void* value, size_t count, size_t element_size);
+// Sorts all members in ascending order.
+// NOTE: Only for num-type arrays. This is for the user to specifiy we don't check for this.
+void sort(void* array, size_t count, size_t element_size);
 
 #endif // CARRAYS_STATIC_H
