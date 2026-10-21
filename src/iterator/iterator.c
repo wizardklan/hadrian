@@ -31,7 +31,8 @@ iterator createIterator(void* array, size_t count, size_t element_size)
         .index = 0,
         .element_size = element_size,
         .start = 0,
-        .end = count
+        .end = count,
+        .direction = 1
     };
     return itr;
 }
@@ -62,7 +63,7 @@ void next(iterator* itr)
     }
 
     // itr->data = GENERIC_AT_PTR_INCREMENT(itr->data, 1, itr->element_size);
-    itr->index += 1;
+    itr->index += 1*itr->direction;
 }
 
 // New implementation:
@@ -89,7 +90,7 @@ void advance(iterator* itr, const size_t step)
     }
 
     // itr->data = GENERIC_AT_PTR_INCREMENT(itr->data, 1, itr->element_size);
-    itr->index += step;
+    itr->index += step*itr->direction;
 }
 
 // Decrements iterator by **1** by decrementing its index.
@@ -104,7 +105,7 @@ void prev(iterator* itr)
     }
 
     // itr->data = GENERIC_AT_PTR_INCREMENT(itr->data, 1, itr->element_size);
-    itr->index -= 1;
+    itr->index -= 1*itr->direction;
 }
 
 // Returns a char* of the value the iterator's index is currently at, due to C's void type having 0 size it is casted to a char* (size(char) == 1)
@@ -193,9 +194,9 @@ ptrdiff_t iteratorSeparation(const iterator *firstItr, const iterator *secondItr
 // Hence iterator exists only in (start-end) i.e. a rangeIterator.
 //
 // Will return out of bounds if moved outside its range even if accessing that memory is valid.
-iterator createRangeIterator(void *array, size_t count, size_t element_size, const size_t start, const size_t end)
+iterator createRangeIterator(void *array, size_t count, size_t element_size, const size_t start, const size_t end, const int direction)
 {
-    if (array == NULL) {
+    if (array == NULL || abs(direction) != 1) {
         fprintf(stderr, "Array is invalid.");
         return INVALID_ITERATOR;
     }
@@ -205,6 +206,7 @@ iterator createRangeIterator(void *array, size_t count, size_t element_size, con
         .count = start - end,
         .element_size = element_size,
         .start = start,
-        .end = end
+        .end = end,
+        .direction = direction
     };
 }

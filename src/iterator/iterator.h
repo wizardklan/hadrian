@@ -9,7 +9,7 @@
 
 #include "../hadrian_status.h"
 
-#define INVALID_ITERATOR ( (iterator){.data = NULL, .count = NAN, .index = NAN, .element_size = NAN} )
+#define INVALID_ITERATOR ( (iterator){.data = NULL, .count = NAN, .index = NAN, .element_size = NAN, .start = NAN, .end = NAN, .direction = NAN} )
 
 // data ptr is always at the HEAD (pointer to first element of array) while index changes.
 // Rest fields stay constant after creation by createIterator().
@@ -20,6 +20,7 @@ typedef struct {
     size_t element_size;
     size_t start;
     size_t end;
+    int direction;
 } iterator;
 
 iterator createIterator(void* array, size_t count, size_t element_size);
@@ -33,6 +34,6 @@ HDN_STATUS_ENUM swapIterators(iterator* first, iterator* second);
 bool iteratorEqual(const iterator* itr1, const iterator* itr2);
 ptrdiff_t iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
 HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value);
-iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end);
+iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end, const int direction);
 
 #endif /* ITERATOR_H */
