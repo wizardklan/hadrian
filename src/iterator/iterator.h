@@ -35,5 +35,6 @@ bool iteratorEqual(const iterator* itr1, const iterator* itr2);
 ptrdiff_t iteratorSeparation(const iterator* firstItr, const iterator* secondItr);
 HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value);
 iterator createRangeIterator(void* array, size_t count, size_t element_size, const size_t start, const size_t end, const int direction);
+HDN_STATUS_ENUM setCurrentIteratorValue(iterator* itr, const void* value);
 
 #endif /* ITERATOR_H */

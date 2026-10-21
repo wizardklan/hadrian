@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 #include "iterator.h"
 #include "../hadrian_status.h"
@@ -209,4 +210,14 @@ iterator createRangeIterator(void *array, size_t count, size_t element_size, con
         .end = end,
         .direction = direction
     };
+}
+
+HDN_STATUS_ENUM setCurrentIteratorValue(iterator *itr, const void *value)
+{
+    if (itr->data == NULL) {
+        return HDN_NULLPTREXCEPTION;
+    }
+
+    memcpy(getIteratorValue(itr), value, itr->element_size);
+    return HDN_SUCCESS;
 }
