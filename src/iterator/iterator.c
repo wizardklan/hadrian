@@ -136,7 +136,6 @@ void prev(iterator* itr)
 void* getIteratorValue(iterator* itr)
 {
     if (isInvalidIterator(itr)) {
-        fprintf(stderr, "Iterator provided is NULL.");
         return NULL;
     }
     if (itr->index == itr->count) {
@@ -152,7 +151,7 @@ HDN_STATUS_ENUM swapIterators(iterator* first, iterator* second)
 {
     if (first->data == NULL || second->data == NULL) {
         fprintf(stderr, "Cannot swap NULL pointers");
-        return HDN_NULLPTREXCEPTION;
+        return HDN_NULL_PTR_EXCEPTION;
     }
 
     iterator temp = *first;
@@ -183,9 +182,8 @@ bool iteratorEqual(const iterator *itr1, const iterator *itr2)
 // but its still a point of caution.
 HDN_STATUS_ENUM iteratorRaw(iterator *itr, void* value)
 {
-    if (itr->data == NULL || isInvalidIterator(itr)) {
-        fprintf(stderr, "Iterator is invalid.");
-        return HDN_NULLPTREXCEPTION;
+    if (isInvalidIterator(itr)) {
+        return HDN_INVALID_OPERATION;
     } else {
        value = getIteratorValue(itr);
        return HDN_SUCCESS;
@@ -229,8 +227,8 @@ iterator createRangeIterator(void *array, size_t count, size_t element_size, con
 
 HDN_STATUS_ENUM setCurrentIteratorValue(iterator *itr, const void *value)
 {
-    if (itr->data == NULL) {
-        return HDN_NULLPTREXCEPTION;
+    if (isInvalidIterator(itr)) {
+        return HDN_INVALID_OPERATION;
     }
 
     memcpy(getIteratorValue(itr), value, itr->element_size);
