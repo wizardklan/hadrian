@@ -12,7 +12,7 @@ iterator iteratorLinearSearch(iterator itr, const void *member)
     for (size_t i = itr.index; i <= itr.end; i++) {
         itr.index = i;
         if (memcmp(getIteratorValue(&itr), member, itr.element_size) == 0) {
-            iterator ans = createRangeIterator(itr.data, itr.end-i, itr.element_size, i, itr.end);
+            iterator ans = createRangeIterator(itr.data, itr.end-i, itr.element_size, i, itr.end, itr.direction);
             return ans;
         }
     }
@@ -29,7 +29,7 @@ iterator iteratorReverseLinearSearch(iterator itr, const void *member)
     for (size_t i = itr.end; i <= itr.index; i--) {
         itr.index = i;
         if (memcmp(getIteratorValue(&itr), member, itr.element_size) == 0) {
-            iterator ans = createRangeIterator(itr.data, itr.end-i, itr.element_size, i, itr.end);
+            iterator ans = createRangeIterator(itr.data, itr.end-i, itr.element_size, i, itr.end, itr.direction);
             return ans;
         }
     }
