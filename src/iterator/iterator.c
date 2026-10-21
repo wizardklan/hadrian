@@ -40,15 +40,30 @@ iterator createIterator(void* array, size_t count, size_t element_size)
 
 // Takes reference to a pre-existing iterator.
 // Compares iterator taken as function argument to INVALID_ITERATOR (defined in iterator.h) and returns bool.
-bool isInvalidIterator(iterator* itr) 
+bool isInvalidIterator(const iterator *itr)
 {
-    iterator b = INVALID_ITERATOR;
-
-    if (itr->data == b.data && itr->count == b.count && itr->index == b.index && itr->element_size == b.element_size) {
+    if (itr == NULL)
         return true;
-    } else {
-        return false;
-    }
+
+    if (itr->data == NULL)
+        return true;
+
+    if (itr->count == 0)
+        return true;
+
+    if (itr->element_size == 0)
+        return true;
+
+    if (itr->start > itr->end)
+        return true;
+
+    if (itr->index < itr->start || itr->index > itr->end)
+        return true;
+
+    if (itr->direction != 1 && itr->direction != -1)
+        return true;
+
+    return false;
 }
 
 // Takes reference to pre-existing iterator.
