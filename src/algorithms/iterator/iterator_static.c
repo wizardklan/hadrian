@@ -62,3 +62,30 @@ bool iteratorContains(iterator itr, const void *member)
 
     return true;
 }
+
+HDN_STATUS_ENUM iteratorReverse(iterator itr)
+{
+    if (isInvalidIterator(&itr)) {
+        return HDN_INVALID_OPERATION;
+    }
+
+    size_t tmp = itr.start;
+    itr.start = itr.end;
+    itr.end = tmp;
+    itr.direction = -1;
+    itr.index = itr.end;
+
+    return HDN_SUCCESS;
+}
+
+HDN_STATUS_ENUM iteratorFill(iterator itr, const void *value)
+{
+    if (isInvalidIterator(&itr)) {
+        return HDN_INVALID_OPERATION;
+    }
+
+    for (size_t i = itr.start; i <= itr.end; i++) {
+        setCurrentIteratorValue(&itr, value);
+        next(&itr);
+    }
+}
