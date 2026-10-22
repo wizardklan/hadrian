@@ -89,3 +89,21 @@ HDN_STATUS_ENUM iteratorFill(iterator itr, const void *value)
         next(&itr);
     }
 }
+
+HDN_STATUS_ENUM iteratorReplace(iterator itr, const void *old_value, const void *new_value)
+{
+    if (isInvalidIterator(&itr)) {
+        return HDN_INVALID_OPERATION;
+    }
+    if (memcpy(old_value, NULL, itr.element_size) == 0 || memcmp(new_value, NULL, itr.element_size) == 0) {
+        return HDN_INVALID_OPERATION;
+    }
+
+    iterator occ = iteratorLinearSearch(itr, old_value);
+    if (isInvalidIterator(&occ)) {
+        return HDN_INVALID_OPERATION;
+    }
+    setCurrentIteratorValue(&occ, new_value);
+
+    return HDN_SUCCESS;
+}
