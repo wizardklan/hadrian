@@ -19,6 +19,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+#include "../../hadrian_status.h"
+
 // Reverses the members of a given array.
 void reverseArray(void* array, size_t count, size_t element_size);
 // Returns the index of the first instance of `member` in the array.
