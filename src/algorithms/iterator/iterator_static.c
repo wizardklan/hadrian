@@ -97,7 +97,7 @@ HDN_STATUS_ENUM iteratorReplace(iterator itr, const void *old_value, const void 
     if (isInvalidIterator(&itr)) {
         return HDN_INVALID_OPERATION;
     }
-    if (memcpy(old_value, NULL, itr.element_size) == 0 || memcmp(new_value, NULL, itr.element_size) == 0) {
+    if (memcmp(old_value, NULL, itr.element_size) == 0 || memcmp(new_value, NULL, itr.element_size) == 0) {
         return HDN_INVALID_OPERATION;
     }
 
