@@ -35,10 +35,10 @@ int main(void)
     assert(*(int*)getIteratorValue(&itr) == 30);
     assert(*(int*)getIteratorValue(&itr2) == 30);
 
-    void* rawPtrToIterator;
+    void* rawPtrToIterator = {0};
     assert(iteratorRaw(&itr, rawPtrToIterator) == HDN_SUCCESS);
 
-    iterator range = createRangeIterator(values, 5, sizeof(int), 1, 4);
+    iterator range = createRangeIterator(values, 5, sizeof(int), 1, 4, 1);
 
     assert(*(int*)getIteratorValue(&range) == 10);
     next(&range);

@@ -39,8 +39,9 @@ int main(void)
     } else {
         printf("Iterators to strings are not equal (SHOULD RETURN TRUE).\n");
     }
-
-    char* value = ((char*)iteratorRaw(&iSTR1));
+    
+    char* value = {0};
+    if (iteratorRaw(&iSTR1, value) != HDN_SUCCESS) return -1; // HDN_status value is discarded
     printf("Value of raw pointer to iterator: %p\n", value);
     printf("Value at raw pointer to iterator: %c\n", *value);
 

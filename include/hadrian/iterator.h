@@ -10,6 +10,9 @@
 #include "hadrian_status.h"
 
 #define INVALID_ITERATOR ((iterator){0})
+// remove forward and backward magic numbers using macro
+#define HDN_RANGEITR_DIRECTION_FORWARD 1
+#define HDN_RANGEITR_DIRECTION_REVERSE -1
 
 // data ptr is always at the HEAD (pointer to first element of array) while index changes.
 // Rest fields stay constant after creation by createIterator().

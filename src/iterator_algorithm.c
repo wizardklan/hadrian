@@ -42,9 +42,7 @@ iterator iteratorReverseLinearSearch(iterator itr, const void *member)
 
 size_t iteratorCountOccurrences(iterator itr, const void *member)
 {
-    if (itr.data == NULL) {
-        return NULL;
-    }
+    if (itr.data == NULL) return 0;
     size_t instances = 0;
 
     for (size_t i = itr.index; i <= itr.end; i++) {
