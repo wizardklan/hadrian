@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "iterator_static.h"
+#include "../include/hadrian/iterator_static.h"
 
 iterator iteratorLinearSearch(iterator itr, const void *member)
 {

@@ -1,8 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "carrays_static.h"
-
 void reverseArray(void* array, size_t count, size_t element_size)
 {
     char* left = (char*)(array);

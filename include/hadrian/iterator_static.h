@@ -7,7 +7,7 @@
 #ifndef ITERATOR_STATIC_H
 #define ITERATOR_STATIC_H
 
-#include "../../iterator/iterator.h"
+#include "iterator.h"
 
 // Returns an iterator to the first occurrence of `member`.
 iterator iteratorLinearSearch(iterator itr, const void *member);

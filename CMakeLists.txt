@@ -9,7 +9,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_library(hadrian STATIC
-    src/algorithms/carrays_static.c
+    src/algorithms/carrays/carrays_static.c
     src/iterator/iterator.c
 )
 

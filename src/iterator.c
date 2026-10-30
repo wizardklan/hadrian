@@ -5,8 +5,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "iterator.h"
-#include "../hadrian_status.h"
+#include "../include/hadrian/iterator.h"
+#include "../include/hadrian/hadrian_status.h"
 
 // #define GENERIC_AT_PTR_INCREMENT(ptr, i, element_size) \
 //     ((void *)((char *)(ptr) + ((i) * (element_size))))

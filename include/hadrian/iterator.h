@@ -7,7 +7,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-#include "../hadrian_status.h"
+#include "hadrian_status.h"
 
 #define INVALID_ITERATOR ((iterator){0})
 

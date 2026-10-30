@@ -1,8 +1,8 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "../src/iterator/iterator.h"
-#include "../src/hadrian_status.h"
+#include "../include/hadrian/iterator.h"
+#include "../include/hadrian/hadrian_status.h"
 
 int main(void)
 {
