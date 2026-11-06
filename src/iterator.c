@@ -208,16 +208,22 @@ ptrdiff_t iteratorSeparation(const iterator *firstItr, const iterator *secondItr
 // Hence iterator exists only in (start-end) i.e. a rangeIterator.
 //
 // Will return out of bounds if moved outside its range even if accessing that memory is valid.
-iterator createRangeIterator(void *array, size_t count, size_t element_size, const size_t start, const size_t end, const int direction)
+//
+// TODO: convert to HDN_STATUS_ENUM
+iterator createRangeIterator(void *array, size_t element_size, const size_t start, const size_t end, const int direction)
 {
     if (array == NULL || abs(direction) != 1) {
         fprintf(stderr, "Array is invalid.");
         return INVALID_ITERATOR;
     }
+    if (end < start) {
+        fprintf(stderr, "Indices given for start and end in rangeIterator are invalid.");
+        return INVALID_ITERATOR
+    }
 
     return (iterator){
         .data = array,
-        .count = start - end,
+        .count = end-start,
         .element_size = element_size,
         .start = start,
         .end = end,
