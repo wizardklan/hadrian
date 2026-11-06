@@ -1,10 +1,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define GENERIC_PTR_INC(ptr, count, elem_size) \
+    ((void *)((char *)(ptr) + ((count) * (elem_size))))
+#define GENERIC_PTR_DEC(ptr, count, elem_size) \
+    ((void *)((char *)(ptr) - ((count) * (elem_size))))
+
 void reverseArray(void* array, size_t count, size_t element_size)
 {
     char* left = (char*)(array);
-    char* right = (char*)(array+(count-1));
+    char* right = (char*)(GENERIC_PTR_INC(array, count-1, element_size));
     char* tmp = (char*)(NULL);
 
     do {
@@ -19,12 +24,12 @@ void reverseArray(void* array, size_t count, size_t element_size)
 }
 
 // NOTE: Can be improved via sentinal search.
-// TODO:                     ^
+// TODO:                     ^ 
 int linearSearch(const void* array, const void* member, size_t count, size_t element_size)
 {
     const void* itr = array;
-    for (int i = 0; i <= count; i++) {
-        if (memcmp(itr+i, member, element_size)) {
+    for (size_t i = 0; i <= count; i++) {
+        if (memcmp(GENERIC_PTR_INC(itr, i, element_size), member, element_size)) {
             return i;
         }
     }
@@ -36,8 +41,8 @@ size_t repetitions(const void* array, const void* member, size_t count, size_t e
     int sum = 0;
 
     const void* itr = array;
-    for (int i = 0; i <= count; i++) {
-        if (memcmp(itr+i, member, element_size)) {
+    for (size_t i = 0; i <= count; i++) {
+        if (memcmp(GENERIC_PTR_INC(itr, i, element_size), member, element_size)) {
             sum++;
         }
     }
@@ -47,7 +52,7 @@ size_t repetitions(const void* array, const void* member, size_t count, size_t e
 void fillArray(void* array, const void* value, size_t count, size_t element_size)
 {
     for (size_t i = 0; i <= count; i++) {
-        memcpy(array+i, value, element_size);
+        memcpy(GENERIC_PTR_INC(array, 1, element_size), value, element_size);
     }
     return;
 }
