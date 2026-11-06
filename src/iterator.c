@@ -207,26 +207,43 @@ ptrdiff_t iteratorSeparation(const iterator *firstItr, const iterator *secondItr
 // Returns an iterator that exists only in a slice of an array but limiting its count to exist only between start and end.
 // Hence iterator exists only in (start-end) i.e. a rangeIterator.
 //
-// Will return out of bounds if moved outside its range even if accessing that memory is valid.
+// The range is from [start, end) 
 //
 // TODO: convert to HDN_STATUS_ENUM
-iterator createRangeIterator(void *array, size_t element_size, const size_t start, const size_t end, const int direction)
+iterator createRangeIterator(
+    void *array,
+    size_t element_size,
+    const size_t start,
+    const size_t end,
+    const int direction)
 {
-    if (array == NULL || abs(direction) != 1) {
-        fprintf(stderr, "Array is invalid.");
+    if (array == NULL) {
+        fprintf(stderr, "createRangeIterator: array is NULL.\n");
         return INVALID_ITERATOR;
     }
+
+    if (element_size == 0) {
+        fprintf(stderr, "createRangeIterator: element_size cannot be zero.\n");
+        return INVALID_ITERATOR;
+    }
+
+    if (direction != 1 && direction != -1) {
+        fprintf(stderr, "createRangeIterator: direction must be 1 or -1.\n");
+        return INVALID_ITERATOR;
+    }
+
     if (end < start) {
-        fprintf(stderr, "Indices given for start and end in rangeIterator are invalid.");
+        fprintf(stderr, "createRangeIterator: end must be greater than or equal to start.\n");
         return INVALID_ITERATOR;
     }
 
     return (iterator){
         .data = array,
-        .count = end-start,
+        .count = end - start,
         .element_size = element_size,
         .start = start,
         .end = end,
+        .index = (direction == 1) ? start : (end == start ? start : end - 1),
         .direction = direction
     };
 }
