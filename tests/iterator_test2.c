@@ -38,7 +38,7 @@ int main(void)
     void* rawPtrToIterator = {0};
     assert(iteratorRaw(&itr, rawPtrToIterator) == HDN_SUCCESS);
 
-    iterator range = createRangeIterator(values, 5, sizeof(int), 1, 4, 1);
+    iterator range = createRangeIterator(values, sizeof(int), 1, 4, 1);
 
     assert(*(int*)getIteratorValue(&range) == 10);
     next(&range);

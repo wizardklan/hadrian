@@ -218,7 +218,7 @@ iterator createRangeIterator(void *array, size_t element_size, const size_t star
     }
     if (end < start) {
         fprintf(stderr, "Indices given for start and end in rangeIterator are invalid.");
-        return INVALID_ITERATOR
+        return INVALID_ITERATOR;
     }
 
     return (iterator){
