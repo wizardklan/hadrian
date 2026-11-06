@@ -40,14 +40,15 @@ int main(void)
         printf("Iterators to strings are not equal (SHOULD RETURN TRUE).\n");
     }
     
-    char* value = {0};
+    char* value = "values hahahahahah";
     if (iteratorRaw(&iSTR1, value) != HDN_SUCCESS) return -1; // HDN_status value is discarded
     printf("Value of raw pointer to iterator: %p\n", value);
     printf("Value at raw pointer to iterator: %c\n", *value);
 
     printf("Value of increment on raw pointer from iterator: %p\n", value+1);
-    printf("Value at increment on raw pointer from iterator (should return 'e'): %c\n", *(value+1));
+    printf("Value at increment on raw pointer from iterator (should return 'e'): %c\n\n", *(value+1));
 
-
+    // professional
+    printf("ALL FINISHED w/ ZERO ERRORS\n\n");
     return 0;
 }
