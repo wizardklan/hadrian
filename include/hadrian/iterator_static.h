@@ -25,7 +25,7 @@ bool iteratorContains(iterator itr, const void *member);
 HDN_STATUS_ENUM iteratorReverse(iterator itr);
 
 // Fills every element in the iterator's range with the specified value.
-HDN_STATUS_ENUM iteratorFill(iterator itr, const void *value);
+void iteratorFill(iterator itr, const void *value);
 
 // Replaces the first occurrence of `old_value` with `new_value`.
 HDN_STATUS_ENUM iteratorReplace(iterator itr,

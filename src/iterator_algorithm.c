@@ -78,16 +78,17 @@ HDN_STATUS_ENUM iteratorReverse(iterator itr)
     return HDN_SUCCESS;
 }
 
-HDN_STATUS_ENUM iteratorFill(iterator itr, const void *value)
+void iteratorFill(iterator itr, const void *value)
 {
     if (isInvalidIterator(&itr)) {
-        return HDN_INVALID_OPERATION;
+        return;
     }
 
     for (size_t i = itr.start; i <= itr.end; i++) {
         setCurrentIteratorValue(&itr, value);
         next(&itr);
     }
+    return;
 }
 
 HDN_STATUS_ENUM iteratorReplace(iterator itr, const void *old_value, const void *new_value)
@@ -107,3 +108,6 @@ HDN_STATUS_ENUM iteratorReplace(iterator itr, const void *old_value, const void 
 
     return HDN_SUCCESS;
 }
+
+size_t iteratorReplaceAll(iterator itr, const void *old_value, const void *new_value);
+
