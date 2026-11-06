@@ -40,9 +40,9 @@ int main(void)
 
     iterator range = createRangeIterator(values, sizeof(int), 1, 4, 1);
 
-    assert(*(int*)getIteratorValue(&range) == 10);
-    next(&range);
     assert(*(int*)getIteratorValue(&range) == 20);
+    next(&range);
+    assert(*(int*)getIteratorValue(&range) == 30);
 
     destroyIterator(&itr);
     destroyIterator(&itr2);

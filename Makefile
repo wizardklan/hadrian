@@ -35,7 +35,7 @@ SHARED_FLAGS := -shared -Wl,--out-implib,$(BIN)/lib$(NAME).dll.a
 
 TEST_EXT := .exe
 MKDIR := mkdir
-RM := rmdir /S /Q
+RM := rm -rf
 
 else
 
